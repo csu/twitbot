@@ -3,7 +3,12 @@ import tweepy
 from modularity import modularity
 
 class Twitbot(object):
-    class StreamListener(tweepy.StreamListener):
+    class TwitbotStreamListener(tweepy.StreamListener):
+        listener_modules = []
+
+        def set_modules(self, listener_modules):
+            self.listener_modules = listener_modules
+
         def on_status(self, status):
             pass
 
@@ -14,6 +19,6 @@ class Twitbot(object):
         self.api = tweepy.API(auth)
 
         # Set up stream listener
-        stream_listener = StreamListener()
+        stream_listener = TwitbotStreamListener()
         stream = tweepy.Stream(auth=api.auth, listener=stream_listener)
         stream.userstream(_with='user', replies='all')
