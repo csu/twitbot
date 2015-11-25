@@ -1,6 +1,7 @@
 secrets.py
 modules/
 !modules/example/
+media/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
