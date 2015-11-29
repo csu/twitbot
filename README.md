@@ -8,3 +8,6 @@ Made by [a twit](http://christopher.su).
     cd twitbot
     # (optionally, create a python virtual env here)
     pip install -r requirements.txt
+
+## Modules
+* [twitbot-img](https://github.com/csu/twitbot-img) – replies with an image for a query
