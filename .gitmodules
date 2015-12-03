@@ -1,0 +1,3 @@
+[submodule "twitter_bots"]
+	path = twitter_bots
+	url = https://github.com/christophersu/twitter-bots.git
