@@ -23,7 +23,7 @@ def parse_tweet(parser, tweet_from, tweet_text):
     for url in tagged_urls:
         query = query.replace('%s' % url, '')
 
-    return mentions, query.strip()
+    return mentions, query.strip() if query is not None else None
 
 class Twitbot(object):
     class TwitbotStreamListener(tweepy.StreamListener):
@@ -45,11 +45,12 @@ class Twitbot(object):
                 tweet_id = status.id
                 tweet_text = status.text
                 mentions, tweet_text = parse_tweet(parser, tweet_from, tweet_text)
-                mentions = ['@%s' % x for x in mentions]
 
-                for mod in self.listener_modules:
-                    m = getattr(mod, 'process_tweet')
-                    result = m(tweet_id, tweet_text, mentions, self.api)
+                if tweet_text: # null check
+                    mentions = ['@%s' % x for x in mentions]
+                    for mod in self.listener_modules:
+                        m = getattr(mod, 'process_tweet')
+                        result = m(tweet_id, tweet_text, mentions, self.api)
 
     def __init__(self, api_key, api_secret, auth_token, auth_secret, modules=[]):
         # Set up Tweepy
