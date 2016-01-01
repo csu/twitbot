@@ -46,7 +46,7 @@ class Twitbot(object):
                 tweet_text = status.text
                 mentions, tweet_text = parse_tweet(parser, tweet_from, tweet_text)
                 mentions = ['@%s' % x for x in mentions]
-
+                
                 if tweet_text:
                     for mod in self.listener_modules:
                         m = getattr(mod, 'process_tweet')
