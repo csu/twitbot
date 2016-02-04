@@ -24,7 +24,10 @@ def parse_tweet(parser, tweet_from, tweet_text):
     query = query.replace('%s' % url, '')
 
   if query:
-    return mentions, query.strip()  
+    try:
+      return mentions, query.strip()  
+    except:
+      return None, None
   
   return None, None
 
