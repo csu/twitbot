@@ -61,7 +61,7 @@ class Twitbot(object):
               m = getattr(mod, 'process_tweet')
               result = m(tweet_id, tweet_text, mentions, self.api)
       except:
-        pass
+        return None
 
   def __init__(self, api_key, api_secret, auth_token, auth_secret, modules=[]):
     # Set up Tweepy
@@ -74,7 +74,10 @@ class Twitbot(object):
     stream_listener.set_modules(modules)
     stream_listener.set_api(api)
     stream = tweepy.Stream(auth=api.auth, listener=stream_listener)
-    stream.userstream(_with='user', replies='all')
+    try:
+      stream.userstream(_with='user', replies='all')
+    except:
+      pass
 
 if __name__ == "__main__":
   bot = Twitbot(secrets.twitter['api_key'],
