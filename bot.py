@@ -1,3 +1,7 @@
+# twitbot
+# Christopher J. Su
+# Copyright (c) 2015
+
 import tweepy
 from ttp import ttp
 from modularity import modularity
